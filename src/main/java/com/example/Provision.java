@@ -21,6 +21,10 @@ public class Provision {
         // Load data from CSV files with headers into DataFrames
         Dataset<Row> orders = spark.read().option("header", "true").csv("data/orders.csv");
         Dataset<Row> customers = spark.read().option("header", "true").csv("data/customers.csv");
+
+        // print the partitions
+        System.out.println("===> Orders partitions: " + orders.rdd().getNumPartitions());
+        System.out.println("===> Customers partitions: " + customers.rdd().getNumPartitions());
         
         // Write the DataFrames into the tables
         orders.write().mode("overwrite").saveAsTable("orders");

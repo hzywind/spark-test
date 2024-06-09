@@ -25,6 +25,7 @@ hs_err_pid*
 # Apache Spark
 spark-warehouse/
 metastore_db/
+warehouse/
 
 # Maven
 target/
