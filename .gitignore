@@ -53,3 +53,6 @@ buildNumber.properties
 
 # Mac
 .DS_Store
+
+# Python
+venv/

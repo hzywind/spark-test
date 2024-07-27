@@ -14,8 +14,10 @@ public class Main {
                 .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
                 .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
                 .getOrCreate();
+
+        // SparkSession spark = SparkSession.getActiveSession().get();
         
-        try (spark) {
+        // try {
 
             spark.sql("SET spark.sql.files.maxPartitionBytes=50000").show();
 
@@ -38,6 +40,8 @@ public class Main {
             
             result.show(Integer.MAX_VALUE);
 
-        }
+        // } finally {
+        //     spark.stop();
+        // }
     }
 }

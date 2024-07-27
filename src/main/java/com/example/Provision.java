@@ -16,7 +16,7 @@ public class Provision {
                 .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
                 .getOrCreate();
 
-        try (spark) {
+        try {
         
             spark.sql("DROP TABLE IF EXISTS customers");
             spark.sql("DROP TABLE IF EXISTS orders");
@@ -49,6 +49,8 @@ public class Provision {
 
             spark.sql("SHOW tables").show();
         
+        } finally {
+            spark.stop();
         }
     }
     
