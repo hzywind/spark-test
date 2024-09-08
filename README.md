@@ -15,3 +15,15 @@ spark.hadoop.javax.jdo.option.ConnectionURL jdbc:derby:;databaseName=<project-pa
 spark.sql.extensions io.delta.sql.DeltaSparkSessionExtension
 spark.sql.catalog.spark_catalog org.apache.spark.sql.delta.catalog.DeltaCatalog
 ```
+
+3. When encountering the `java.lang.IllegalAccessError: class org.apache.spark.storage.StorageUtils$ (in unnamed module ...)` error, add `--add-opens java.base/sun.nio.ch=ALL-UNNAMED` to the JVM options. If VS Code is used, add below configuration to `launch.json`.
+```json
+{
+    "type": "java",
+    "name": "<application-name>",
+    "request": "launch",
+    "mainClass": "<main-class>",
+    "projectName": "<project-name>",
+    "vmArgs": "--add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED"
+}
+```
